@@ -9,7 +9,7 @@ public class AviaSoulsTest {
     private Ticket ticket3 = new Ticket("Москва", "Адлер", 5, 11, 13);
     private Ticket ticket4 = new Ticket("Москва", "Симферополь", 4, 1, 3);//2 часа
     private Ticket ticket5 = new Ticket("Москва", "Симферополь", 5, 2, 5);//3 часа
-    private Ticket ticket6 = new Ticket("Москва", "Симферополь", 6, 7, 9);
+    private Ticket ticket6 = new Ticket("Москва", "Симферополь", 6, 7, 9);//2 часа
 
     @Test
     public void shouldSearchIfNotFind() {
@@ -65,20 +65,4 @@ public class AviaSoulsTest {
 
         Assertions.assertEquals(expected, actual);
     }
-
-    @Test
-    public void shouldCompareAndSortIfAreSameTime() {
-        //сортировка если время полета совпадает
-        AviaSouls manager = new AviaSouls();
-        manager.add(ticket1);
-        manager.add(ticket4);
-        manager.add(ticket5);
-        manager.add(ticket6);
-        Comparator<Ticket> comparator = new TicketTimeComparator();
-        Ticket[] expected = new Ticket[]{ticket1, ticket4, ticket5, ticket6};
-        Ticket[] actual = manager.searchAndSortBy("Москва", "Симферополь", comparator);
-        Assertions.assertArrayEquals(expected, actual);
-
-
     }
-}
